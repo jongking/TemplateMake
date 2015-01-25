@@ -1,0 +1,10 @@
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Release\TemplateMake.exe
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Release\TemplateMake.pdb
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Release\RazorEngine.dll
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Release\System.Web.Razor.dll
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Release\RazorEngine.xml
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Release\System.Web.Razor.xml
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\obj\Release\TemplateMake.exe
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\obj\Release\TemplateMake.pdb
+H:\GitHub\TemplateMake\TemplateMake\obj\Release\TemplateMake.exe
+H:\GitHub\TemplateMake\TemplateMake\obj\Release\TemplateMake.pdb

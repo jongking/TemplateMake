@@ -1,0 +1,9 @@
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Debug\TemplateMake.exe
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Debug\TemplateMake.pdb
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Debug\RazorEngine.dll
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Debug\System.Web.Razor.dll
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Debug\RazorEngine.xml
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\bin\Debug\System.Web.Razor.xml
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\obj\Debug\TemplateMake.exe
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\obj\Debug\TemplateMake.pdb
+H:\GitHub\TemplateMake\TemplateMake\TemplateMake\obj\Debug\TemplateMake.csprojResolveAssemblyReference.cache

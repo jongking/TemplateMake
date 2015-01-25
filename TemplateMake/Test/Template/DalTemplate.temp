@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using Make.DbHelper;
+using Make.Model;
+using Make.DAL.IDal;
+
+namespace Make.DAL.DalImpl
+{
+    class @{@Model.TableName}Dal : I@{@Model.TableName}Dal
+    {
+        public bool add(SqlConnection cn, SqlTransaction tc, @{@Model.TableName}Model model)
+        {
+            return DbHelperSQL.insertModel<@{@Model.TableName}Model>(model, "@{@Model.TableName}", cn, tc);
+        }
+
+        public bool update(SqlConnection cn, SqlTransaction tc, @{@Model.TableName}Model model)
+        {
+            return DbHelperSQL.updateModel<@{@Model.TableName}Model>(model, "@{@Model.TableName}", "UserID", model.Evenid, "'", cn, tc);
+        }
+
+        public bool del(SqlConnection cn, SqlTransaction tc, IList<QueryModel> ilist)
+        {
+            return DbHelperSQL.delRecord(ilist, "@{@Model.TableName}", cn, tc);
+        }
+
+        public @{@Model.TableName}Model getModel(SqlConnection cn, SqlTransaction tc, IList<QueryModel> qmlist)
+        {
+            return DbHelperSQL.getFromQueryModel<@{@Model.TableName}Model>(qmlist, "@{@Model.TableName}", cn, tc);
+        }
+
+        public IList<@{@Model.TableName}Model> getModelList(SqlConnection cn, SqlTransaction tc, IList<QueryModel> qmlist, int limitCount)
+        {
+            return DbHelperSQL.getListFromQueryModel<@{@Model.TableName}Model>(qmlist, "@{@Model.TableName}", limitCount, cn, tc);
+        }
+    }
+}

@@ -1,0 +1,35 @@
+﻿@functions{
+    public string GetDefault(string typename){
+        string result = "";
+        switch (typename){
+            case "string": result = " = \"\"";break;
+            case "DateTime": result = " = DateTime.Now";break;
+            case "bool": result = " = false";break;
+        }
+        return result;
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace @{@Model.Attr["NameSpace"]}.Model
+{
+    public class @{@Model.TableName}Model
+    {
+    @{
+        foreach(var tm in Model.TableMsgList){
+    @:    private @tm.xtypename @tm.nameL@Model.Helper.HtmlRaw(GetDefault(tm.xtypename));
+    @:    public @tm.xtypename @tm.name
+    @:    {
+    @:        get { return @tm.nameL; }
+    @:        set { @tm.nameL = value; }
+    @:    }
+        }
+    }
+        public @{@Model.TableName}Model()
+        {
+        }
+    }
+}

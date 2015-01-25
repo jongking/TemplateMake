@@ -1,0 +1,128 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using Make.BLL.Ebi;
+using Make.DAL.DalFactory;
+using Make.DAL.Exception;
+using Make.DAL.IDal;
+using Make.DbHelper;
+using Make.Exp;
+using Make.Model;
+
+namespace Make.BLL.Ebo
+{
+    internal class @{@Model.TableName}Ebo : I@{@Model.TableName}Ebi
+    {
+        private readonly I@{@Model.TableName}Dal @{@Model.TableName.ToLower()}Dal = DataAccess.CreateInstance<I@{@Model.TableName}Dal>("@{@Model.TableName}Dal");
+
+        public void add(@{@Model.TableName}Model @{@Model.TableName.ToLower()})
+        {
+            SqlConnection cn = null;
+            SqlTransaction tc = null;
+            try
+            {
+                cn = DbHelperSQL.getConnection();
+                tc = DbHelperSQL.startTransaction(cn);
+
+                //执行新增写进数据库
+                @{@Model.TableName.ToLower()}Dal.add(cn, tc, @{@Model.TableName.ToLower()});
+
+                DbHelperSQL.commitTransaction(tc);
+            }
+            catch (Exception dalEx)
+            {
+                DbHelperSQL.rollBackTransaction(tc);
+                throw new MakeException(ExpSort.数据库, dalEx.Message);
+            }
+            finally
+            {
+                DbHelperSQL.closeConnection(cn);
+            }
+        }
+
+        public void update(@{@Model.TableName}Model @{@Model.TableName.ToLower()})
+        {
+            SqlConnection cn = null;
+            SqlTransaction tc = null;
+            try
+            {
+                cn = DbHelperSQL.getConnection();
+                tc = DbHelperSQL.startTransaction(cn);
+
+                @{@Model.TableName.ToLower()}Dal.update(cn, tc, @{@Model.TableName.ToLower()});
+
+                DbHelperSQL.commitTransaction(tc);
+            }
+            catch (Exception dalEx)
+            {
+                DbHelperSQL.rollBackTransaction(tc);
+                throw new MakeException(ExpSort.数据库, dalEx.Message);
+            }
+            finally
+            {
+                DbHelperSQL.closeConnection(cn);
+            }
+        }
+
+        public void delete(IList<QueryModel> qmList)
+        {
+            SqlConnection cn = null;
+            SqlTransaction tc = null;
+            try
+            {
+                cn = DbHelperSQL.getConnection();
+                tc = DbHelperSQL.startTransaction(cn);
+
+                @{@Model.TableName.ToLower()}Dal.del(cn, tc, qmList);
+
+                DbHelperSQL.commitTransaction(tc);
+            }
+            catch (Exception dalEx)
+            {
+                DbHelperSQL.rollBackTransaction(tc);
+
+                throw new MakeException(ExpSort.数据库, dalEx.Message);
+            }
+            finally
+            {
+                DbHelperSQL.closeConnection(cn);
+            }
+        }
+
+        public @{@Model.TableName}Model getModel(IList<QueryModel> qmlist)
+        {
+            SqlConnection cn = null;
+            try
+            {
+                cn = DbHelperSQL.getConnection();
+                return @{@Model.TableName.ToLower()}Dal.getModel(cn, null, qmlist);
+            }
+            catch (Exception dalEx)
+            {
+                throw new MakeException(ExpSort.数据库, dalEx.Message);
+            }
+            finally
+            {
+                DbHelperSQL.closeConnection(cn);
+            }
+        }
+
+        public IList<@{@Model.TableName}Model> getModelList(IList<QueryModel> qmList, int limit)
+        {
+            SqlConnection cn = null;
+            try
+            {
+                cn = DbHelperSQL.getConnection();
+                return @{@Model.TableName.ToLower()}Dal.getModelList(cn, null, qmList, -1);
+            }
+            catch (Exception dalEx)
+            {
+                throw new MakeException(ExpSort.数据库, dalEx.Message);
+            }
+            finally
+            {
+                DbHelperSQL.closeConnection(cn);
+            }
+        }
+    }
+}

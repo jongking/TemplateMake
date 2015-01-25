@@ -1,0 +1,5 @@
+NameSpace:Make
+TableName:Users,Shop
+
+//这是生成工具的文件夹,模版是用razor语法的
+//上面所写的NameSpace：Make为键值对,在自己写模版的时候可以用@Model.Attr["NameSpace"]来取出其中的值,以此类推
