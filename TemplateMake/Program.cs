@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
@@ -29,14 +30,25 @@ namespace TemplateMake
         {
             get
             {
-                return File.ReadAllText(CurrentPath + "db.ini");
+                return ConfigurationManager.AppSettings["conStr"];
             }
         }
+
+        public static void WriteAllText(string filePath, string str)
+        {
+            FileInfo fi = new FileInfo(filePath);
+            var di = fi.Directory;
+            if (di != null && !di.Exists)
+                di.Create();
+            File.WriteAllText(filePath, str);
+        }
+
         static void Main(string[] args)
         {
             SqlConnection cn = null;
             try
             {
+                if(args.Length == 0) throw new Exception("没有输入文件");
                 var inputtxt = args[0];
                 var inputtxts = File.ReadAllLines(inputtxt);
                 var dictionary = new Dictionary<string, string>();
@@ -64,11 +76,7 @@ namespace TemplateMake
                 foreach (var tn in tableNames)
                 {
                     var dt = DbHelper.GetTableMsg(cn, null, tn);
-                    var tableMsgList = new List<TableMsgModel>();
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        tableMsgList.Add(new TableMsgModel(row));
-                    }
+                    var tableMsgList = (from DataRow row in dt.Rows select new TableMsgModel(row)).ToList();
 
                     foreach (var line in alllines)
                     {
@@ -81,7 +89,7 @@ namespace TemplateMake
                         //转换为需要的内容
                         var parseTemplate = Razor.Parse(template, new { TableName = tn, Attr = dictionary, TableMsgList = tableMsgList, Helper = new RazorHelper() });
                         //放入设定的文件里面
-                        File.WriteAllText(CurrentPath + lps[1], parseTemplate);
+                        WriteAllText(CurrentPath + lps[1], parseTemplate);
                     }
                 }
                 Console.WriteLine("生成成功");

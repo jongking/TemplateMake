@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Make.Model;
+
+namespace Make.BLL.Ebi
+{
+    public interface I@{@Model.TableName}Ebi
+    {
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="@{@Model.TableName.ToLower()}"></param>
+        void add(@{@Model.TableName}Model @{@Model.TableName.ToLower()});
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="@{@Model.TableName.ToLower()}"></param>
+        void update(@{@Model.TableName}Model @{@Model.TableName.ToLower()});
+        /// <summary>
+        /// 根据Id,删除
+        /// </summary>
+        /// <param name="@{@Model.TableName.ToLower()}Id">操作员Id</param>
+        void delete(IList<QueryModel> upmList);
+        /// <summary>
+        /// 根据qmList(查询条件模型)查询返回一个对象
+        /// </summary>
+        @{@Model.TableName}Model getModel(IList<QueryModel> qmlist);
+        /// <summary>
+        /// 根据qmList(查询条件模型)查询一组关于的数据,limit为正数，则查该数的记录数，为负数时，则查询全部。
+        /// </summary>
+        IList<@{@Model.TableName}Model> getModelList(IList<QueryModel> qmList, int limit);
+    }
+}

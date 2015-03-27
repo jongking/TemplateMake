@@ -1,2 +1,2 @@
 NameSpace:Make
-TableName:Users,Shop
+TableName:Member
